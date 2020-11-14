@@ -43,9 +43,7 @@ namespace _08._Ranking
                     }
                 }
             }
-   
             PrintResult(ranking);
-
         }
         static void PrintResult(Dictionary<string, Dictionary<string, int>> ranking)
         {
