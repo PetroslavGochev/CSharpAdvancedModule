@@ -17,13 +17,13 @@ namespace SoftUniParking
         public int Count => this.Place.Count;
         public string AddCar(Car car)
         {
-            if(Count == capacity)
-            {
-                return "Parking is full!";
-            }
-            else if (Place.Contains(car))    
+            if (Place.Any(x=>x.RegistrationNumber == car.RegistrationNumber))    
             {
                 return $"Car with that registration number, already exists!";
+            }
+            else if (Count >= capacity)
+            {
+                return "Parking is full!";
             }
             else
             {
@@ -46,13 +46,13 @@ namespace SoftUniParking
         }
         public Car GetCar(string registrationNumber)
         {
-            return Place.Where(x => x.RegistrationNumber == registrationNumber).FirstOrDefault();
+            return Place.FirstOrDefault(x => x.RegistrationNumber == registrationNumber);
         }
         public  void RemoveSetOfRegistrationNumber(List<string> RegistrationNumbers)
         {
             foreach (var registration in RegistrationNumbers)
             {
-                this.Place.RemoveAll(x => x.RegistrationNumber ==    registration);
+                this.Place.RemoveAll(x => x.RegistrationNumber == registration);
             }
         }
     }

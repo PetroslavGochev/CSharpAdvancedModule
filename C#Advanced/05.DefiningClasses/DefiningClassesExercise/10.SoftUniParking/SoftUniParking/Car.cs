@@ -23,7 +23,7 @@ namespace SoftUniParking
             result.AppendLine($"Make: {Make}");
             result.AppendLine($"Model: {Model}");
             result.AppendLine($"HorsePower: {HorsePower}");
-            result.Append($"RegistrationNumber: {RegistrationNumber}");
+            result.AppendLine($"RegistrationNumber: {RegistrationNumber}");
             return result.ToString().Trim();
         }
     }
