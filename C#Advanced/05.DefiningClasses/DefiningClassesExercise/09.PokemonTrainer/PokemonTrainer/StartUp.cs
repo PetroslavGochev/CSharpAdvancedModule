@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace PokemonTrainer
 {
-    class Program
+    public class StartUp
     {
         static void Main(string[] args)
         {
