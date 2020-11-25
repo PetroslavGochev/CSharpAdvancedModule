@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>_08.Threeuple</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Threeuple.cs~RF387243f1.TMP" />
+  </ItemGroup>
+
+</Project>
