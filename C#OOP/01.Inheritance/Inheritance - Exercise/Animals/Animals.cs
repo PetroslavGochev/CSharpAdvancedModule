@@ -4,9 +4,8 @@ using System.Text;
 
 namespace Animals
 {
-    public abstract class Animals
+    public class Animals:IProduceSound
     {
-        private const string ERROR_MESSAGE = "Invalid input!";
         private string name;
         private int age;
         private string gender;
@@ -26,10 +25,10 @@ namespace Animals
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException(ERROR_MESSAGE);
+                    throw new ArgumentException("Invalid input!");
                 }
-                 this.name = value;
-            }                
+                this.name = value;
+            }
         }
         public int Age
         {
@@ -39,14 +38,13 @@ namespace Animals
             }
             set
             {
-                if (value < 0)
+                if (value <= 0)
                 {
-                    throw new ArgumentException(ERROR_MESSAGE);
+                    throw new ArgumentException("Invalid input!");
                 }
                 this.age = value;
             }
         }
-            
         public string Gender
         {
             get
@@ -55,22 +53,26 @@ namespace Animals
             }
             set
             {
-                if(value != "Male" && value != "Female")
+                if (string.IsNullOrWhiteSpace(value) || value != "Male" && value != "Female")
                 {
-                    throw new ArgumentException(ERROR_MESSAGE);
+                    throw new ArgumentException("Invalid input!");
                 }
                 this.gender = value;
             }
         }
-        public abstract string ProduceSound();
+
+        public virtual string ProduceSound()
+        {
+            return null ;
+        }
+            
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"{this.GetType().Name}");
+            sb.AppendLine(this.GetType().Name);
             sb.AppendLine($"{this.Name} {this.Age} {this.Gender}");
             sb.Append(ProduceSound());
             return sb.ToString();
         }
-
     }
 }
