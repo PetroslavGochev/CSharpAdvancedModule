@@ -8,6 +8,7 @@ namespace Animals
     {
         static void Main(string[] args)
         {
+
             string type = string.Empty;
             List<Animals> list = new List<Animals>();
             while ((type = Console.ReadLine()) != "Beast!")
@@ -60,6 +61,10 @@ namespace Animals
                 Tomcat tomcat = new Tomcat(name, age);
                 list.Add(tomcat);
             }
+            else
+            {
+                throw new ArgumentException("Invalid input!");
+            }
         }
         public static void PrintResult(List<Animals> list)
         {
@@ -70,3 +75,4 @@ namespace Animals
         }
     }
 }
+

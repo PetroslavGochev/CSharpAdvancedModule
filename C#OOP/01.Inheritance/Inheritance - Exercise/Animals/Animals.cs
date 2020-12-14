@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Animals
+
 {
-    public class Animals:IProduceSound
+    public class Animals : IProduceSound
     {
         private string name;
         private int age;
@@ -23,7 +24,7 @@ namespace Animals
             }
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
+                if (ValidateStringInput(value))
                 {
                     throw new ArgumentException("Invalid input!");
                 }
@@ -38,7 +39,7 @@ namespace Animals
             }
             set
             {
-                if (value <= 0)
+                if (ValidateStringInput(value.ToString()) || value < 0)
                 {
                     throw new ArgumentException("Invalid input!");
                 }
@@ -53,7 +54,7 @@ namespace Animals
             }
             set
             {
-                if (string.IsNullOrWhiteSpace(value) || value != "Male" && value != "Female")
+                if (ValidateStringInput(value) || !ValidateGenderInput(value))
                 {
                     throw new ArgumentException("Invalid input!");
                 }
@@ -63,9 +64,12 @@ namespace Animals
 
         public virtual string ProduceSound()
         {
-            return null ;
+            return null;
         }
-            
+        private bool ValidateStringInput(string s) => string.IsNullOrWhiteSpace(s);
+
+        private bool ValidateGenderInput(string s) => (s == "Female" ? true : false) || (s == "Male" ? true : false);
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -76,3 +80,4 @@ namespace Animals
         }
     }
 }
+
