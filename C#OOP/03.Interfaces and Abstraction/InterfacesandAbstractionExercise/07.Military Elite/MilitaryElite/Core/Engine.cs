@@ -39,17 +39,14 @@ namespace MilitaryElite.Core
                 int id = int.Parse(data[1]);
                 string firstName = data[2];
                 string lastName = data[3];
-                decimal salary = 0;
-                if (type != "Spy")
-                {
-                    salary = decimal.Parse(data[4]);
-                }
                 if (type == "Private")
                 {
+                    decimal salary = decimal.Parse(data[4]);
                     soldier = new Private(id, firstName, lastName, salary);
                 }
                 else if (type == "LieutenantGeneral")
                 {
+                    decimal salary = decimal.Parse(data[4]);
                     ILieutenantGeneral general = new LieutenantGeneral(id, firstName, lastName, salary);
                     foreach (var item in data.Skip(5))
                     {
@@ -60,6 +57,7 @@ namespace MilitaryElite.Core
                 }
                 else if (type == "Engineer")
                 {
+                    decimal salary = decimal.Parse(data[4]);
                     string crops = data[5];
                     soldier = new Engineer(id, firstName, lastName, salary, crops);
                     try
@@ -84,6 +82,7 @@ namespace MilitaryElite.Core
                 }
                 else if (type == "Commando")
                 {
+                    decimal salary = decimal.Parse(data[4]);
                     string crops = data[5];
                     soldier = new Commando(id, firstName, lastName, salary, crops);
                     try
@@ -115,7 +114,7 @@ namespace MilitaryElite.Core
                 }
                 else if (type == "Spy")
                 {
-                    int codeNumber = int.Parse(data[5]);
+                    int codeNumber = int.Parse(data[4]);
                     soldier = new Spy(id, firstName, lastName, codeNumber);
                 }
                 if(soldier != null)

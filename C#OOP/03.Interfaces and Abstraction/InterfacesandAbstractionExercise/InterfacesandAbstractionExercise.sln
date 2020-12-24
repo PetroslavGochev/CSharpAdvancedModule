@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BirthdayCelebration", "05.B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodShortage", "06.Food Shortage\FoodShortage\FoodShortage.csproj", "{13BE8453-18F4-479B-91FE-0228469BB2AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MilitaryElite", "07.Military Elite\MilitaryElite\MilitaryElite.csproj", "{91FB062D-AB5A-4A15-BB14-5160EBA05448}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MilitaryElite", "07.Military Elite\MilitaryElite\MilitaryElite.csproj", "{91FB062D-AB5A-4A15-BB14-5160EBA05448}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplicitInterfaces", "09.Explicit\ExplicitInterfaces\ExplicitInterfaces.csproj", "{A539B4AE-141A-4731-A456-DE52818BEDA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExplicitInterfaces", "09.Explicit\ExplicitInterfaces\ExplicitInterfaces.csproj", "{A539B4AE-141A-4731-A456-DE52818BEDA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionHierarchy", "08.Collection\CollectionHierarchy\CollectionHierarchy.csproj", "{B466F34F-01B2-43A2-AEC4-613BF7D74236}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{A539B4AE-141A-4731-A456-DE52818BEDA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A539B4AE-141A-4731-A456-DE52818BEDA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A539B4AE-141A-4731-A456-DE52818BEDA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B466F34F-01B2-43A2-AEC4-613BF7D74236}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B466F34F-01B2-43A2-AEC4-613BF7D74236}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B466F34F-01B2-43A2-AEC4-613BF7D74236}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B466F34F-01B2-43A2-AEC4-613BF7D74236}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
