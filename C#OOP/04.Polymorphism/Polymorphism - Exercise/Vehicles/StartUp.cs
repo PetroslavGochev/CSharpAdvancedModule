@@ -9,8 +9,8 @@ namespace Vehicles
         static void Main(string[] args)
         {
             string[] carData = Console.ReadLine()
-                .Split(" ", StringSplitOptions.RemoveEmptyEntries)
-                .ToArray();
+               .Split(" ", StringSplitOptions.RemoveEmptyEntries)
+               .ToArray();
             string[] truckData = Console.ReadLine()
                 .Split(" ", StringSplitOptions.RemoveEmptyEntries)
                 .ToArray();
@@ -24,9 +24,9 @@ namespace Vehicles
                 var command = input[0];
                 var type = input[1];
                 var distance = double.Parse(input[2]);
-                if(command == "Drive")
+                if (command == "Drive")
                 {
-                    if(type == "Car")
+                    if (type == "Car")
                     {
                         car.Driving(distance);
                     }
@@ -37,7 +37,7 @@ namespace Vehicles
                 }
                 else
                 {
-                    if(type == "Car")
+                    if (type == "Car")
                     {
                         car.Refueling(distance);
                     }
@@ -53,3 +53,4 @@ namespace Vehicles
         }
     }
 }
+

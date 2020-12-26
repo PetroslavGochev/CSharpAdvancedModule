@@ -8,7 +8,7 @@ namespace Vehicles.Models
         private const double AIR_CONDITION = 1.6;
         private const bool hole = true;
 
-        public Truck(double fuelQuantity, double fuelConsumtpion) 
+        public Truck(double fuelQuantity, double fuelConsumtpion)
             : base(fuelQuantity, fuelConsumtpion)
         {
         }

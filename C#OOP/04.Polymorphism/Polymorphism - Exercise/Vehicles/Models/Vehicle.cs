@@ -13,10 +13,10 @@ namespace Vehicles.Models
             this.FuelConsumption = fuelConsumtpion;
             this.FuelQuantity = fuelQuantity;
         }
-        protected double FuelQuantity { get;  private set; }
+        protected double FuelQuantity { get; private set; }
         protected double FuelConsumption { get; }
-        protected abstract double   AirCondition { get;  }
-        protected abstract  bool  Hole { get; }
+        protected abstract double AirCondition { get; }
+        protected abstract bool Hole { get; }
 
         public virtual void Driving(double distance)
         {
@@ -43,7 +43,7 @@ namespace Vehicles.Models
             }
         }
 
-        public  override string ToString() => $"{this.GetType().Name}: {this.FuelQuantity:f2}";
+        public override string ToString() => $"{this.GetType().Name}: {this.FuelQuantity:f2}";
 
     }
 }

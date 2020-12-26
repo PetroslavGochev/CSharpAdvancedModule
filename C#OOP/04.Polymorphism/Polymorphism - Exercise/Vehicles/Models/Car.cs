@@ -8,10 +8,10 @@ namespace Vehicles.Models
     {
         private const double AIR_CONDITION = 0.9;
         private const bool hole = false;
-        public Car(double fuelQuantity, double fuelConsumtpion) 
+        public Car(double fuelQuantity, double fuelConsumtpion)
             : base(fuelQuantity, fuelConsumtpion)
         {
-           
+
         }
 
         protected override double AirCondition => AIR_CONDITION;
