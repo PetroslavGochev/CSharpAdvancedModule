@@ -10,11 +10,11 @@ namespace VehiclesExtension.Models
         private const double PROBLEM = 0.95;
         public Vehicle(double fuelQuantity, double fuelConsumption,double tankCapacity)
         {
-            this.FuelQuantity = fuelQuantity;
+            this.FuelQuantity = Quantity(fuelQuantity,tankCapacity);
             this.FuelConsumption = fuelConsumption;
             this.TankCapacity = tankCapacity;
         }
-        protected double FuelQuantity { get; private set; }
+        protected double FuelQuantity { get; set; }
         protected double FuelConsumption { get; }
         protected abstract double AirCondition { get;  }
         protected abstract bool Hole { get;  }
@@ -34,7 +34,15 @@ namespace VehiclesExtension.Models
         }
         public virtual void Refueling(double liters)
         {
-            if (Hole)
+            if (IsQuantityMore(liters))
+            {
+                Console.WriteLine(String.Format(GlobalConstants.MORE_QUANTITY, liters));
+            }
+            else if(liters <= 0)
+            {
+                Console.WriteLine(String.Format(GlobalConstants.POSITIVE_NUMBER));
+            }
+            else if (Hole)
             {
                 this.FuelQuantity += liters * PROBLEM;
             }
@@ -43,5 +51,8 @@ namespace VehiclesExtension.Models
                 this.FuelQuantity += liters;
             }
         }
+        private  double Quantity(double fuelQuantity, double tankCapacity) => fuelQuantity <= tankCapacity ? fuelQuantity : 0;
+        private bool IsQuantityMore(double liters) => liters + this.FuelQuantity > this.TankCapacity ? true : false;
+        public override string ToString() => $"{this.GetType().Name}: {this.FuelQuantity:f2}";
     }
 }

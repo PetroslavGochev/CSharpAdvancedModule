@@ -7,7 +7,7 @@ namespace VehiclesExtension.Models
     public class Truck : Vehicle
     {
         private const double AIR_CONDITION = 1.6;
-        private const bool hole = true;
+        private const bool HOLE = true;
         public Truck(double fuelQuantity, double fuelConsumption, double tankCapacity)
             : base(fuelQuantity, fuelConsumption, tankCapacity)
         {
@@ -15,6 +15,6 @@ namespace VehiclesExtension.Models
 
         protected override double AirCondition => AIR_CONDITION;
 
-        protected override bool Hole => hole;
+        protected override bool Hole => HOLE;
     }
 }
