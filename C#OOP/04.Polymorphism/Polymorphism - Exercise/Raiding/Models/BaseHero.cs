@@ -14,7 +14,7 @@ namespace Raiding.Models
 
         public virtual string CastAbility()
         {
-            return $"{GetType().Name} - {this.Name}";
+            return $"{this.GetType().Name} - {this.Name}";
         }
     }
 }

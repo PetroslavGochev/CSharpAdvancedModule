@@ -62,7 +62,7 @@ namespace VehiclesExtension
                 {
                     if(type == "Bus")
                     {
-                        (bus as Bus).EmptyBus(distance);
+                        ((Bus)bus).EmptyBus(distance);
                     }
                 }
             }

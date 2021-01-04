@@ -13,9 +13,9 @@ namespace Raiding.Models
         }
 
         public override int Power => POWER;
-        public override string ToString()
+        public override string CastAbility()
         {
-            return $"{base.ToString()} + healed for {this.Power}";
+            return $"{base.CastAbility()} healed for {this.Power}";
         }
     }
 }
