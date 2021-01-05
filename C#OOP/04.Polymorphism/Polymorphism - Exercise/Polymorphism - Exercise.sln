@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vehicles", "Vehicles\Vehicl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehiclesExtension", "VehiclesExtension\VehiclesExtension.csproj", "{8BF05CFD-D377-4E41-8BBF-2AB820DA8ED3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raiding", "Raiding\Raiding.csproj", "{1D968966-C04B-4051-86E4-B438B40642D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raiding", "Raiding\Raiding.csproj", "{1D968966-C04B-4051-86E4-B438B40642D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WildFarm", "WildFarm\WildFarm.csproj", "{6E20D28F-8F96-449C-AAAD-BA2696BAF24F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{1D968966-C04B-4051-86E4-B438B40642D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D968966-C04B-4051-86E4-B438B40642D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D968966-C04B-4051-86E4-B438B40642D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E20D28F-8F96-449C-AAAD-BA2696BAF24F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E20D28F-8F96-449C-AAAD-BA2696BAF24F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E20D28F-8F96-449C-AAAD-BA2696BAF24F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E20D28F-8F96-449C-AAAD-BA2696BAF24F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
