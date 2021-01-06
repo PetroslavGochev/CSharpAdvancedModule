@@ -1,23 +1,21 @@
 ﻿using PizzaCalories.Core;
-using PizzaCalories.Models;
 using System;
 
 namespace PizzaCalories
 {
-    class StartUp
+    public class StartUp
     {
         static void Main(string[] args)
         {
+            Engine engine = new Engine();
             try
             {
-                var engine = new Engine();
                 engine.Run();
             }
             catch (ArgumentException ex)
             {
                 Console.WriteLine(ex.Message);
             }
-
         }
     }
 }

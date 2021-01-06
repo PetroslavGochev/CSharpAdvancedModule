@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace PizzaCalories.Models
+namespace PizzaCalories.Model
 {
     public class Pizza
     {
@@ -11,42 +10,45 @@ namespace PizzaCalories.Models
         private const string OUT_OF_RANGE = "Number of toppings should be in range [0..10].";
         private string name;
         private Dough dough;
-        private List<Topping> toppings;
-
-        public Pizza()
+        private ICollection<Topping> toppings;
+        private Pizza()
         {
             this.toppings = new List<Topping>();
         }
-        public Pizza(string name, Dough dough)
-            :this()
+        public Pizza(string name,Dough dough)
+            : this()
         {
-            this.name = name;
+            this.Name = name;
             this.dough = dough;
         }
         public string Name
         {
-            get => this.name;
-            private set
+            get
             {
-                if (value.Length < 1 || value.Length >15)
+                return this.name;
+            }
+            set
+            {
+                if(string.IsNullOrEmpty(value) || value.Length > 15)
                 {
                     throw new ArgumentException(INVALID_NAME);
                 }
                 this.name = value;
             }
         }
-        public double TotalCalories => dough.Calories + toppings.Sum(x => x.Calories);
+        public double PizzaCalories => this.dough.Calories + this.toppings.Sum(x => x.Calories);
 
-        public void AddTopping(Topping topping)
+        public void AddToppings(Topping topping)
         {
-            toppings.Add(topping);
-            if (toppings.Count > 10)
+            if(this.toppings.Count == 10)
             {
                 throw new ArgumentException(OUT_OF_RANGE);
             }
+            toppings.Add(topping);
         }
-
-        public override string ToString() => $"{this.Name} - {this.TotalCalories:f2} Calories.";
-       
+        public override string ToString()
+        {
+            return $"{this.Name} - {this.PizzaCalories:f2} Calories.";
+        }
     }
 }
