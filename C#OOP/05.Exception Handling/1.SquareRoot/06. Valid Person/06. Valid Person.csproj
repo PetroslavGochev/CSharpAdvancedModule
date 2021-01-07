@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>_06._Valid_Person</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Person.cs~RF6ba8c84d.TMP" />
+  </ItemGroup>
+
+</Project>
