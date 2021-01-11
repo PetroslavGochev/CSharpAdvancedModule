@@ -1,0 +1,2 @@
+3/31/2015 5:23:54 PM - Fatal - mscorlib.dll does not respond
+3/31/2015 5:23:54 PM - Critical - No connection string found in App.config

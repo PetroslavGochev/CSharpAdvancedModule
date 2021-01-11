@@ -21,12 +21,12 @@ namespace MilitaryElite.Models
             }
             set
             {
-                Corps corps;
-                if (!Enum.TryParse<Corps>(value, out corps))
+                //Corps corps;
+                if (!Enum.TryParse<Corps>(value, out this.corps))
                 {
                     throw new ArgumentException();
                 }
-                this.corps = corps;
+                //this.corps = corps;
             }
         }
         public override string ToString()

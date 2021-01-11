@@ -22,12 +22,12 @@ namespace MilitaryElite.Models
             }
             set
             {
-                State state;
-                if (!Enum.TryParse<State>(value, out state))
+                //State state;
+                if (!Enum.TryParse<State>(value, out this.state))
                 {
                     throw new ArgumentException();
                 }
-                this.state = state;
+                //this.state = state;
             }
         }
 
