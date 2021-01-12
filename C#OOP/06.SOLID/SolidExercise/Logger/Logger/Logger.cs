@@ -16,27 +16,27 @@ namespace LoggerExercise.Logger
 
         public void Critical(string dateTime, string fileApender)
         {
-            Append(dateTime, ReportLevel.Critical, fileApender);
+            Append(dateTime, ReportLevel.CRITICAL, fileApender);
         }
 
         public void Error(string dateTime, string fileApender)
         {
-            Append(dateTime,ReportLevel.Error,fileApender);
+            Append(dateTime,ReportLevel.ERROR,fileApender);
         }
 
         public void Fatal(string dateTime, string fileApender)
         {
-            Append(dateTime, ReportLevel.Fatal, fileApender);
+            Append(dateTime, ReportLevel.FATAL, fileApender);
         }
 
         public void Info(string dateTime, string fileApender)
         {
-            Append(dateTime, ReportLevel.Info, fileApender);
+            Append(dateTime, ReportLevel.INFO, fileApender);
         }
 
         public void Warning(string dateTime, string fileApender)
         {
-            Append(dateTime, ReportLevel.Warning, fileApender);
+            Append(dateTime, ReportLevel.WARNING, fileApender);
         }
         private void Append(string dateTime,ReportLevel reportLevel,string fileApender)
         {

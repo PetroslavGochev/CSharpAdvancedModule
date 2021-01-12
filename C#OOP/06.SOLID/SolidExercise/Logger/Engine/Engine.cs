@@ -1,24 +1,67 @@
-﻿using System;
+﻿using LoggerExercise.Appenders;
+using LoggerExercise.Logger;
+using System;
+using System.Linq;
 
 namespace LoggerExercise.Engine
 {
+    using Logger;
     public class Engine : IEngine
     {
-     //            2
-     //        ConsoleAppender SimpleLayout CRITICAL
-     //FileAppender XmlLayout
-     //INFO | 3 / 26 / 2015 2:08:11 PM | Everything seems fine
-     //WARNING | 3 / 26 / 2015 2:22:13 PM | Warning: ping is too high - disconnect imminent
-     //ERROR | 3 / 26 / 2015 2:32:44 PM | Error parsing request
-     //CRITICAL | 3 / 26 / 2015 2:38:01 PM | No connection string found in App.config
-     //FATAL | 3 / 26 / 2015 2:39:19 PM | mscorlib.dll does not respond
-     //END
+      
+        private IAppender[] appenders;
+        private IAppender appender;
+        private ILogger logger;
         public void Run()
         {
             int number = int.Parse(Console.ReadLine());
-            for (int i = 1; i <= number; i++)
+            this.appenders = new IAppender[number];
+            for (int i = 0; i < number; i++)
             {
-               
+                string[] appendData = Console.ReadLine()
+                    .Split(" ", StringSplitOptions.RemoveEmptyEntries)
+                    .ToArray();
+                this.appender = Factories.AppenderFactory.CreateAppender(appendData);
+                this.appenders[i] = this.appender;
+            }
+            this.logger = new Logger(this.appenders);
+            string input = string.Empty;
+            while((input = Console.ReadLine()) != "END")
+            {
+                string[] loggerArgs = input
+                    .Split('|', StringSplitOptions.RemoveEmptyEntries)
+                    .ToArray();
+                PrintReportLevel(loggerArgs);
+            }
+            foreach (var appender in this.appenders)
+            {
+                Console.WriteLine(appender);
+            }
+        }
+        private void PrintReportLevel(string[] args)
+        {
+            string reportType = args[0];
+            string dateTime = args[1];
+            string message = args[2];
+            if(reportType == "INFO")
+            {
+                this.logger.Info(dateTime, message);
+            }
+            else if(reportType == "WARNING")
+            {
+                this.logger.Warning(dateTime, message);
+            }
+            else if (reportType == "ERROR")
+            {
+                this.logger.Error(dateTime, message);
+            }
+            else if (reportType == "CRITICAL")
+            {
+                this.logger.Critical(dateTime, message);
+            }
+            else if (reportType == "FATAL")
+            {
+                this.logger.Fatal(dateTime, message);
             }
         }
     }

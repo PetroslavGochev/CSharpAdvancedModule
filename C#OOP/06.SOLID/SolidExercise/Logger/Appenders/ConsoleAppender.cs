@@ -12,10 +12,10 @@ namespace LoggerExercise.Appenders
         }
 
         public override void Append(string dateTime, ReportLevel report, string message)
-        {
-            this.MessagesAppended++;
+        {    
             if(this.ReportLevel <= report)
             {
+                this.MessagesAppended++;
                 Console.WriteLine(Layout.Format, dateTime, report, message);
             }
         }

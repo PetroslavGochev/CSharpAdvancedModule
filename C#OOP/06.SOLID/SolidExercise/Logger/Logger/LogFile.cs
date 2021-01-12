@@ -7,11 +7,12 @@ namespace LoggerExercise.Logger
     public class LogFile : ILogFile
     {
         private const string LogFilePath = "../../../log.txt";
-        public int Size => File.ReadAllText(LogFilePath).ToCharArray().Sum(x => x);
+        public int Size { get; set; }
 
         public void Write(string message)
         {
             File.AppendAllText(LogFilePath, message + Environment.NewLine);
+            this.Size = message.ToCharArray().Where(char.IsLetter).Sum(x => x);
         }
     }
 }

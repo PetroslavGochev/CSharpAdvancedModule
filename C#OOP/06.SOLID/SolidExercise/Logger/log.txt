@@ -1,2 +1,155 @@
 3/31/2015 5:23:54 PM - Fatal - mscorlib.dll does not respond
 3/31/2015 5:23:54 PM - Critical - No connection string found in App.config
+3/31/2015 5:33:07 PM - Error - Error parsing request
+3/31/2015 5:33:07 PM - Error - Error parsing request
+3/31/2015 5:33:07 PM - Error - ERROR parsing request
+<log>
+  < date >3/26/2015 2:08:11 PM</date>
+  <level>INFO</level>
+  <message>Everything seems fine</message>
+</log>
+<log>
+  < date >3/26/2015 2:22:13 PM</date>
+  <level>WARNING</level>
+  <message>Warning: ping is too high - disconnect imminent</message>
+</log>
+<log>
+  < date >3/26/2015 2:32:44 PM</date>
+  <level>ERROR</level>
+  <message>Error parsing request</message>
+</log>
+<log>
+  < date >3/26/2015 2:38:01 PM</date>
+  <level>CRITICAL</level>
+  <message>No connection string found in App.config</message>
+</log>
+<log>
+  < date >3/26/2015 2:39:19 PM</date>
+  <level>FATAL</level>
+  <message>mscorlib.dll does not respond</message>
+</log>
+<log>
+  < date >3/26/2015 2:08:11 PM</date>
+  <level>INFO</level>
+  <message>Everything seems fine</message>
+</log>
+<log>
+  < date >3/26/2015 2:22:13 PM</date>
+  <level>WARNING</level>
+  <message>Warning: ping is too high - disconnect imminent</message>
+</log>
+<log>
+  < date >3/26/2015 2:32:44 PM</date>
+  <level>ERROR</level>
+  <message>Error parsing request</message>
+</log>
+<log>
+  < date >3/26/2015 2:38:01 PM</date>
+  <level>CRITICAL</level>
+  <message>No connection string found in App.config</message>
+</log>
+<log>
+  < date >3/26/2015 2:39:19 PM</date>
+  <level>FATAL</level>
+  <message>mscorlib.dll does not respond</message>
+</log>
+<log>
+  < date >3/26/2015 2:08:11 PM</date>
+  <level>INFO</level>
+  <message>Everything seems fine</message>
+</log>
+<log>
+  < date >3/26/2015 2:22:13 PM</date>
+  <level>WARNING</level>
+  <message>Warning: ping is too high - disconnect imminent</message>
+</log>
+<log>
+  < date >3/26/2015 2:32:44 PM</date>
+  <level>ERROR</level>
+  <message>Error parsing request</message>
+</log>
+<log>
+  < date >3/26/2015 2:38:01 PM</date>
+  <level>CRITICAL</level>
+  <message>No connection string found in App.config</message>
+</log>
+<log>
+  < date >3/26/2015 2:39:19 PM</date>
+  <level>FATAL</level>
+  <message>mscorlib.dll does not respond</message>
+</log>
+<log>
+  < date >3/26/2015 2:08:11 PM</date>
+  <level>INFO</level>
+  <message>Everything seems fine</message>
+</log>
+<log>
+  < date >3/26/2015 2:22:13 PM</date>
+  <level>WARNING</level>
+  <message>Warning: ping is too high - disconnect imminent</message>
+</log>
+<log>
+  < date >3/26/2015 2:32:44 PM</date>
+  <level>ERROR</level>
+  <message>Error parsing request</message>
+</log>
+<log>
+  < date >3/26/2015 2:38:01 PM</date>
+  <level>CRITICAL</level>
+  <message>No connection string found in App.config</message>
+</log>
+<log>
+  < date >3/26/2015 2:39:19 PM</date>
+  <level>FATAL</level>
+  <message>mscorlib.dll does not respond</message>
+</log>
+<log>
+  < date >3/26/2015 2:08:11 PM</date>
+  <level>INFO</level>
+  <message>Everything seems fine</message>
+</log>
+<log>
+  < date >3/26/2015 2:22:13 PM</date>
+  <level>WARNING</level>
+  <message>Warning: ping is too high - disconnect imminent</message>
+</log>
+<log>
+  < date >3/26/2015 2:32:44 PM</date>
+  <level>ERROR</level>
+  <message>Error parsing request</message>
+</log>
+<log>
+  < date >3/26/2015 2:38:01 PM</date>
+  <level>CRITICAL</level>
+  <message>No connection string found in App.config</message>
+</log>
+<log>
+  < date >3/26/2015 2:39:19 PM</date>
+  <level>FATAL</level>
+  <message>mscorlib.dll does not respond</message>
+</log>
+<log>
+  < date >3/26/2015 2:08:11 PM</date>
+  <level>INFO</level>
+  <message>Everything seems fine</message>
+</log>
+<log>
+  < date >3/26/2015 2:22:13 PM</date>
+  <level>WARNING</level>
+  <message>Warning: ping is too high - disconnect imminent</message>
+</log>
+<log>
+  < date >3/26/2015 2:32:44 PM</date>
+  <level>ERROR</level>
+  <message>Error parsing request</message>
+</log>
+<log>
+  < date >3/26/2015 2:38:01 PM</date>
+  <level>CRITICAL</level>
+  <message>No connection string found in App.config</message>
+</log>
+<log>
+  < date >3/26/2015 2:39:19 PM</date>
+  <level>FATAL</level>
+  <message>mscorlib.dll does not respond</message>
+</log>

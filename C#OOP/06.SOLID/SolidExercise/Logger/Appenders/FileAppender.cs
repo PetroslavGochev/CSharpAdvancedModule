@@ -7,7 +7,7 @@ namespace LoggerExercise.Appenders
     public class FileAppender : Appender
     {
         private ILogFile logFile;
-        public FileAppender(ILayout layout,ILogFile logFile) 
+        public FileAppender(ILayout layout, ILogFile logFile)
             : base(layout)
         {
             this.logFile = logFile;
@@ -15,9 +15,10 @@ namespace LoggerExercise.Appenders
 
         public override void Append(string dateTime, ReportLevel report, string message)
         {
-            this.MessagesAppended++;
-           if(this.ReportLevel <= report)
+            if (this.ReportLevel <= report)
             {
+
+                this.MessagesAppended++;
                 this.logFile.Write(string.Format(this.Layout.Format, dateTime, report, message));
             }
         }
