@@ -10,10 +10,6 @@ namespace Database
 
         public Database(params int[] data)
         {
-            if (!IsOverCapacity(data.Length))
-            {
-                throw new InvalidOperationException("Array is out of the range!");
-            }
             this.data = new int[16];
 
             for (int i = 0; i < data.Length; i++)
@@ -62,6 +58,5 @@ namespace Database
 
             return coppyArray;
         }
-        private bool IsOverCapacity(int length) => length > 16 ? false : true;
     }
 }

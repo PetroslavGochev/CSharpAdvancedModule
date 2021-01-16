@@ -1,12 +1,9 @@
-
+using NUnit.Framework;
+using System.Linq;
 
 namespace Tests
 {
     using Database;
-    using System.Linq;
-    using NUnit.Framework;
-
-    [TestFixture]
     public class DatabaseTests
     {
         private const int ARRAY_MAXIMUM = 16;
@@ -31,7 +28,7 @@ namespace Tests
         [Test]
         public void TestedAddMethod()
         {
-            Assert.That(() => dataBase.Add(1),Throws.InvalidOperationException);
+            Assert.That(() => dataBase.Add(1), Throws.InvalidOperationException);
         }
         [Test]
         public void TestedRemoveEmptyArrayMethod()
@@ -52,11 +49,10 @@ namespace Tests
             int[] expectResult = new int[dataBase.Count];
             for (int i = 0; i < expectResult.Length; i++)
             {
-                expectResult[i] = i+1;
+                expectResult[i] = i + 1;
             }
             int[] fetch = dataBase.Fetch();
             Assert.AreEqual(expectResult, fetch);
         }
-
     }
 }

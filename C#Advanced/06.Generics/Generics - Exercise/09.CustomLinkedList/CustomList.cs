@@ -7,6 +7,7 @@ namespace _09.CustomLinkedList
     public class CustomList<T>
         where T : IComparable<T>
     {
+        //Test
         private const int INITIAL_CAPACITY = 2;
         private T[] items;
         public int Count { get; private set; }
