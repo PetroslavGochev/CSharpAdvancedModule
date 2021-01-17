@@ -19,14 +19,13 @@ namespace Tests
         [Test]
         public void ConstructorTestedIfArrayIsOverTheCapacity()
         {
-            
             Assert.That(() => new ExtendedDatabase(arrayOverCapacity), Throws.ArgumentException);
         }
         [Test]
         public void ConstructorWorkedCorectly()
         {
             this.edb = new ExtendedDatabase(new Person(1, "Test"));
-            Assert.IsNotNull(this.edb);
+            Assert.AreEqual(1, this.edb.Count);
         }
 
         //Test Add Method
@@ -53,10 +52,17 @@ namespace Tests
             for (int i = 0; i < person.Length; i++)
             {
                 person[i] = new Person(i, $"Test{i}");
-            }     
+            }
             Person personForAdd = new Person(1, "Invalid");
             this.edb = new ExtendedDatabase(person);
             Assert.That(() => edb.Add(personForAdd), Throws.InvalidOperationException);
+        }
+        [Test]
+        public void AddMethodCoreclty()
+        {
+            Person person = new Person(1, "Test");
+            this.edb.Add(person);
+            Assert.AreEqual(1, this.edb.Count);
         }
 
         //Test RemoveMethod
@@ -71,7 +77,7 @@ namespace Tests
             edb = new ExtendedDatabase(new Person(123, "Gosho"));
             int expectedCount = edb.Count - 1;
             edb.Remove();
-            Assert.AreEqual(expectedCount,edb.Count);
+            Assert.AreEqual(expectedCount, edb.Count);
         }
 
         //Test FindByUser
@@ -80,7 +86,7 @@ namespace Tests
         [TestCase(null)]
         public void IsNameNullOrEmptyString(string name)
         {
-            Assert.That(() => edb.FindByUsername(string.Empty), Throws.ArgumentNullException); 
+            Assert.That(() => edb.FindByUsername(string.Empty), Throws.ArgumentNullException);
         }
         [Test]
         public void NameDoesntExist()
@@ -93,13 +99,13 @@ namespace Tests
             Person person = new Person(12, "Test");
             edb = new ExtendedDatabase(person);
             Person expectedPerson = edb.FindByUsername("Test");
-            Assert.AreEqual(expectedPerson,person);
+            Assert.AreEqual(expectedPerson, person);
         }
 
         //Test FindByID
         [Test]
         public void IsIDNegativeNumber()
-        {             
+        {
             Assert.Throws<ArgumentOutOfRangeException>(() => edb.FindById(-2));
         }
         [Test]
@@ -116,17 +122,29 @@ namespace Tests
             Assert.AreEqual(expectedPerson, person);
         }
 
-        //TestFetch
-        [Test]
-        public void FetchTest()
+        public void ConstructorAddUserCorectId()
         {
-            Person first = new Person(1, "Test");
+            var persons = new Person[]
+            {
+                new Person(1, "a"),
+                new Person(1, "b")
+            };
 
-            Person[] expectResult = new Person[1] { first };
-            edb = new ExtendedDatabase(first);
-            Person[] person = new Person[1] { edb.FindById(1) };
-            Assert.AreEqual(expectResult, person);
+            Assert.That(() => new ExtendedDatabase(persons), Throws.InvalidOperationException);
         }
+
+        [Test]
+        public void ConstructorAddUserCorectUserName()
+        {
+            var persons = new Person[]
+            {
+                new Person(1, "a"),
+                new Person(2, "a")
+            };
+
+            Assert.That(() => new ExtendedDatabase(persons), Throws.InvalidOperationException);
+        }
+
 
     }
 }
