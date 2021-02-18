@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.Lootbox", "01.Lootbox\01.Lootbox.csproj", "{360AFD2F-AC7D-4C6A-87B0-E844854B8217}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02.Re-Volt", "02.Re-Volt\02.Re-Volt.csproj", "{DABBB295-44AF-4D6E-8433-98F936C5AF76}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{360AFD2F-AC7D-4C6A-87B0-E844854B8217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{360AFD2F-AC7D-4C6A-87B0-E844854B8217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{360AFD2F-AC7D-4C6A-87B0-E844854B8217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{360AFD2F-AC7D-4C6A-87B0-E844854B8217}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DABBB295-44AF-4D6E-8433-98F936C5AF76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DABBB295-44AF-4D6E-8433-98F936C5AF76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DABBB295-44AF-4D6E-8433-98F936C5AF76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DABBB295-44AF-4D6E-8433-98F936C5AF76}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {106DB93F-64F6-4393-B22B-A72B2553564F}
+	EndGlobalSection
+EndGlobal
