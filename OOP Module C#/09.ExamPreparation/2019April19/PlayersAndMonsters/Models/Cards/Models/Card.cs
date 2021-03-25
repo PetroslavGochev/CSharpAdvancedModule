@@ -1,4 +1,5 @@
-﻿using PlayersAndMonsters.Models.Cards.Contracts;
+﻿using PlayersAndMonsters.Common;
+using PlayersAndMonsters.Models.Cards.Contracts;
 using System;
 
 namespace PlayersAndMonsters.Models.Cards.Models
@@ -66,7 +67,7 @@ namespace PlayersAndMonsters.Models.Cards.Models
 
         public override string ToString()
         {
-            return $"Card: {this.Name} - Damage: {this.DamagePoints}";
+            return string.Format(ConstantMessages.CardReportInfo, this.Name, this.DamagePoints);
         }
     }
 }
