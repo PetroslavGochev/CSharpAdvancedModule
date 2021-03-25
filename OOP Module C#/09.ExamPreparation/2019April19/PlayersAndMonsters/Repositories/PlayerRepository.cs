@@ -9,7 +9,7 @@ namespace PlayersAndMonsters.Repositories
     public class PlayerRepository : IPlayerRepository
     {
         private List<IPlayer> players;
-        private PlayerRepository()
+        public PlayerRepository()
         {
             this.players = new List<IPlayer>();
         }

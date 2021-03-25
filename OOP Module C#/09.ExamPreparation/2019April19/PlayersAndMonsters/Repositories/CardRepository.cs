@@ -20,9 +20,9 @@ namespace PlayersAndMonsters.Repositories
         public void Add(ICard card)
         {
             CardIsNull(card);
-            if(this.Cards.Any(card => card.Name == card.Name))
+            if(this.Cards.Any(c => c.Name == card.Name))
             {
-                throw new ArgumentException("Card {name} already exists!");
+                throw new ArgumentException($"Card {card.Name} already exists!");
             }
             this.cards.Add(card);
         }

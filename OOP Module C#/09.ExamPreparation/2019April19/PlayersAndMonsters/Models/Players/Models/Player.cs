@@ -1,4 +1,5 @@
-﻿using PlayersAndMonsters.Models.Players.Contracts;
+﻿using PlayersAndMonsters.Common;
+using PlayersAndMonsters.Models.Players.Contracts;
 using PlayersAndMonsters.Repositories.Contracts;
 using System;
 
@@ -56,7 +57,11 @@ namespace PlayersAndMonsters.Models.Players
             {
                 throw new ArgumentException("Damage points cannot be less than zero.");
             }
-            if (!IsDead)
+            if (this.Health - damagePoints <= 0)
+            {
+                this.Health = 0 ;
+            }
+            else
             {
                 this.Health -= damagePoints;
             }
@@ -64,7 +69,7 @@ namespace PlayersAndMonsters.Models.Players
 
         public override string ToString()
         {
-            return $"Username: {this.Username} - Health: {this.Health} – Cards {this.CardRepository.Count}";
+            return string.Format(ConstantMessages.PlayerReportInfo, this.Username, this.Health, this.CardRepository.Count);
         }
     }
 }

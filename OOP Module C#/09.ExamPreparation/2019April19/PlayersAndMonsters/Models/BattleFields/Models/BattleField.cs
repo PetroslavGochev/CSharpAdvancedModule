@@ -1,6 +1,8 @@
 ﻿using PlayersAndMonsters.Models.BattleFields.Contracts;
 using PlayersAndMonsters.Models.Players.Contracts;
+using PlayersAndMonsters.Models.Players.Models;
 using System;
+using System.Linq;
 
 namespace PlayersAndMonsters.Models.BattleFields.Models
 {
@@ -20,12 +22,35 @@ namespace PlayersAndMonsters.Models.BattleFields.Models
             {
                 IncreaseHealth(enemyPlayer);
             }
-            while(!attackPlayer.IsDead && !enemyPlayer.IsDead)
+            HealthBonus(attackPlayer);
+            HealthBonus(enemyPlayer);
+            Fighting(attackPlayer, enemyPlayer);
+        }
+
+        private void Fighting(IPlayer attackPlayer, IPlayer enemyPlayer)
+        {
+            while (!attackPlayer.IsDead && !enemyPlayer.IsDead)
             {
-                
+                int attackPlayerDamage = PlayerAttackPower(attackPlayer);
+                int enemyPlayerDamage = PlayerAttackPower(enemyPlayer);
+                enemyPlayer.TakeDamage(attackPlayerDamage);
+                if (enemyPlayer.IsDead)
+                {
+                    continue;
+                }
+                attackPlayer.TakeDamage(enemyPlayerDamage);
             }
         }
 
+        private int PlayerAttackPower(IPlayer player)
+        {
+            return player.CardRepository.Cards.Sum(c => c.DamagePoints);
+        }
+        private void HealthBonus(IPlayer player)
+        {
+            int sum = player.CardRepository.Cards.Sum(c => c.HealthPoints);
+            player.Health += sum;
+        }
         private void IncreaseHealth(IPlayer player)
         {
             player.Health += 40;
@@ -34,6 +59,7 @@ namespace PlayersAndMonsters.Models.BattleFields.Models
                 pc.DamagePoints += 30;
             }
         }
+
 
     }
 }
