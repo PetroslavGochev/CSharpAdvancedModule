@@ -6,8 +6,4 @@
     <RootNamespace>ViceCity</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\Neghbourhoods\Models\" />
-  </ItemGroup>
-
 </Project>

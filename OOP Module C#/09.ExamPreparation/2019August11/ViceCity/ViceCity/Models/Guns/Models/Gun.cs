@@ -37,10 +37,11 @@ namespace ViceCity.Models.Guns.Models
             {
                 return this.bulletsPerBarrel;
             }
-            private set
+            protected set
             {
                 if(value < 0)
                 {
+                    ;
                     throw new ArgumentException("Bullets cannot be below zero!");
                 }
                 this.bulletsPerBarrel = value;
@@ -66,9 +67,14 @@ namespace ViceCity.Models.Guns.Models
 
         public bool CanFire => this.TotalBullets > 0;
 
-        public virtual int Fire()
+        public abstract int Fire();
+
+        protected bool IsNeededReload()
+            => this.BulletsPerBarrel == 0;
+        protected void Reload(int bulletCapacity)
         {
-            throw new System.NotImplementedException();
+            this.BulletsPerBarrel = bulletCapacity;
+            this.TotalBullets -= bulletCapacity;
         }
     }
 }

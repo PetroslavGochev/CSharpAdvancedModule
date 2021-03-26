@@ -2,6 +2,7 @@
 using ViceCity.Models.Guns.Contracts;
 using ViceCity.Models.Players.Contracts;
 using ViceCity.Repositories.Contracts;
+using ViceCity.Repositories.Models;
 
 namespace ViceCity.Models.Players.Models
 {
@@ -10,9 +11,12 @@ namespace ViceCity.Models.Players.Models
         private string name;
         private int lifePoints;
         private IRepository<IGun> repository;
-       
+        private Player()
+        {
+            this.repository = new Repository();
+        }
         protected Player(string name, int lifePoints)
-            
+            :this()
         {
             this.Name = name;
             this.LifePoints = lifePoints;
