@@ -27,8 +27,8 @@ namespace BlueOrigin.Tests
             Assert.That(this.spaceship.Count == 0);
         }
         [Test]
-        [TestCase("",10)]
-        [TestCase(null,10)]
+        [TestCase("", 10)]
+        [TestCase(null, 10)]
         public void TestNameIsNullOrEmpty(string name, int capacity)
         {
             Assert.Throws<ArgumentNullException>(() => new Spaceship(name, capacity));

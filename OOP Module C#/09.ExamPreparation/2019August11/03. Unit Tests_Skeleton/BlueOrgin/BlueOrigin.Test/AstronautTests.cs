@@ -1,7 +1,8 @@
 ﻿using NUnit.Framework;
 
 namespace BlueOrigin.Test
-{
+{   
+    
     public class AstronautTests
     {
         private const string NAME = "PESHO";
@@ -22,8 +23,15 @@ namespace BlueOrigin.Test
             var expectedName = this.astronaut.Name;
             var expectedOxyge = this.astronaut.OxygenInPercentage;
             Assert.AreEqual(expectedOxyge, 10);
-            Assert.AreEqual(expectedName, "PESHO");
+            Assert.AreEqual(expectedName, "PESHO");           
+        }
+        [Test]
+        //        public string Name { get;  }
 
+        public void Dummy()
+        {
+            var expectedName = this.astronaut.Name;
+            Assert.AreEqual(expectedName, "PESHO");
         }
     }
 }
