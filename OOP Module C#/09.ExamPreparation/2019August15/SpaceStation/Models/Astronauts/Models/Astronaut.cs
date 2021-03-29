@@ -1,6 +1,7 @@
 ﻿using SpaceStation.Models.Astronauts.Contracts;
 using SpaceStation.Models.Bags;
 using System;
+using System.Text;
 
 namespace SpaceStation.Models.Astronauts.Models
 {
@@ -10,7 +11,12 @@ namespace SpaceStation.Models.Astronauts.Models
         private string name;
         private double oxygen;
 
+        private Astronaut()
+        {
+            this.bag = new Bag();
+        }
         protected Astronaut(string name, double oxygen)
+            :this()
         {
             this.Name = name;
             this.Oxygen = oxygen;
@@ -54,16 +60,28 @@ namespace SpaceStation.Models.Astronauts.Models
 
         public virtual void Breath()
         {
-            this.Oxygen -= 10;
-            IfOxygenIsNull();
+            IfOxygenIsNull(10);
         }
 
-        protected void IfOxygenIsNull()
+        protected void IfOxygenIsNull(int oxygen)
         {
-            if (this.Oxygen < 0)
+            if(this.Oxygen < oxygen)
             {
                 this.Oxygen = 0;
             }
+            else
+            {
+                this.Oxygen -= oxygen;
+            }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Name: {this.Name}");
+            sb.AppendLine($"Oxygen: {this.Oxygen}");
+            sb.AppendLine($"Bag items: {this.Bag.ToString()}");
+            return sb.ToString().TrimEnd();
         }
     }
 }

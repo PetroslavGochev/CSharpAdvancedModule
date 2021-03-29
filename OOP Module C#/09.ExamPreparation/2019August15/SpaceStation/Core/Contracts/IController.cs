@@ -1,6 +1,5 @@
 ﻿namespace SpaceStation.Core.Contracts
 {
-    using Models.Planets;
 
     public interface IController
     {

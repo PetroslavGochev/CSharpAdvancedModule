@@ -1,6 +1,6 @@
 ﻿using SpaceStation.Core;
 using SpaceStation.Core.Contracts;
-
+using SpaceStation.Core.Models;
 
 namespace SpaceStation
 {
@@ -8,8 +8,8 @@ namespace SpaceStation
     {
         public static void Main(string[] args)
         {
-           //IEngine engine = new Engine();
-           //engine.Run();
+            IEngine engine = new Engine();
+            engine.Run();
         }
 
     }

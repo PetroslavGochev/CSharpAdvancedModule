@@ -8,8 +8,7 @@
         }
         public override void Breath()
         {
-            this.Oxygen -= 5;
-            this.IfOxygenIsNull();
+            this.IfOxygenIsNull(5);
         }
     }
 }

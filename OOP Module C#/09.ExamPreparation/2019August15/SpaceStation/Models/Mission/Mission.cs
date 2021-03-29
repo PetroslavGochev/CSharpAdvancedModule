@@ -8,7 +8,11 @@ namespace SpaceStation.Models.Mission
 {
     public class Mission : IMission
     {
-        private IList<string> item;
+        private IList<string> items;
+        public Mission()
+        {
+            this.items = new List<string>();
+        }
         public void Explore(IPlanet planet, ICollection<IAstronaut> astronauts)
         {
             foreach (var astronaut in astronauts)
@@ -19,16 +23,24 @@ namespace SpaceStation.Models.Mission
                 }
                 foreach (var item in planet.Items)
                 {
-                    astronaut.Breath();
                     if (astronaut.CanBreath)
                     {
                         astronaut.Bag.Items.Add(item);
-                        planet.Items.Remove(item);
+                        this.items.Add(item);
+                        astronaut.Breath();
                     }
                 }
+                RemovePlanetItems(planet);
+            }          
+        }
 
+        private void RemovePlanetItems(IPlanet planet)
+        {
+            foreach (var item in this.items)
+            {
+                planet.Items.Remove(item);
             }
-            
+            this.items.Clear();
         }
     }
 }
