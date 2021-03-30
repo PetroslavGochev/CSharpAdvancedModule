@@ -7,8 +7,7 @@
         public PowerMotorcycle(string model, int horsePower) 
             : base(model, horsePower, CUBIC_CENTIMETERS)
         {
-            this.minimumHorsePower = 70;
-            this.maximumHorsePower = 100;
+           
         }
 
     }

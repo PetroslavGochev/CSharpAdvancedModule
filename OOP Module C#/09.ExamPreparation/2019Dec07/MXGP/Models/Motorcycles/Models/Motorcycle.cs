@@ -5,12 +5,26 @@ namespace MXGP.Models.Motorcycles.Models
 {
     public abstract class Motorcycle : IMotorcycle
     {
-        protected int minimumHorsePower;
-        protected int maximumHorsePower;
+        private int minimumHorsePower;
+        private int maximumHorsePower;
         private string model;
         private int horsePower;
 
+        private Motorcycle()
+        {
+            if (this.GetType().Name == "SpeedMotorcycle")
+            {
+                this.minimumHorsePower = 50;
+                this.maximumHorsePower = 69;
+            }
+            else if (this.GetType().Name == "PowerMotorcycle")
+            {
+                this.minimumHorsePower = 70;
+                this.maximumHorsePower = 100;
+            }
+        }
         public Motorcycle(string model, int horsePower, double cubicCentimeters)
+            : this()
         {
             this.Model = model;
             this.HorsePower = horsePower;
@@ -24,7 +38,7 @@ namespace MXGP.Models.Motorcycles.Models
             }
             private set
             {
-                if(string.IsNullOrWhiteSpace(value) || value.Length < 4)
+                if (string.IsNullOrWhiteSpace(value) || value.Length < 4)
                 {
                     throw new ArgumentException($"Model {value} cannot be less than 4 symbols.");
                 }
@@ -40,11 +54,13 @@ namespace MXGP.Models.Motorcycles.Models
             }
             private set
             {
+
                 if (value < this.minimumHorsePower || value > this.maximumHorsePower)
                 {
                     throw new ArgumentException($"Invalid horse power: {value}.");
                 }
-                 this.horsePower = value;
+
+                this.horsePower = value;
             }
         }
 
