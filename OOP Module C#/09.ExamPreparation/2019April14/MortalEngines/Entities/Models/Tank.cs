@@ -1,10 +1,11 @@
 ﻿using MortalEngines.Entities.Contracts;
+using System;
 
 namespace MortalEngines.Entities.Models
 {
     public class Tank : BaseMachine, ITank
     {
-        public Tank(string name, double attackPoints, double defensePoints, double healthPoints) 
+        public Tank(string name, double attackPoints, double defensePoints) 
             : base(name, attackPoints, defensePoints, 100)
         {
             this.DefenseMode = true;
@@ -18,20 +19,18 @@ namespace MortalEngines.Entities.Models
             {
                 this.AttackPoints -= 40;
                 this.DefensePoints += 30;
-                this.DefenseMode = false;
             }
             else
             {
                 this.AttackPoints += 40;
                 this.DefensePoints -= 30;
-                this.DefenseMode = true;
             }
         }
 
         public override string ToString()
         {
             string mode = this.DefenseMode ? "ON" : "OFF";
-            return base.ToString() + $" *Defense: {mode}";
+            return base.ToString() + Environment.NewLine + $" *Defense: {mode}";
         }
     }
 }

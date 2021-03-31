@@ -10,12 +10,14 @@ namespace MortalEngines.Entities.Models
         private string name;
         private IPilot pilot;
 
+
         protected BaseMachine(string name, double attackPoints, double defensePoints, double healthPoints)
         {
             this.Name = name;
             this.AttackPoints = attackPoints;
             this.DefensePoints = defensePoints;
             this.HealthPoints = healthPoints;
+            this.Targets = new List<string>();
         }
 
         public string Name
@@ -80,9 +82,9 @@ namespace MortalEngines.Entities.Models
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"- {this.Name}");
             sb.AppendLine($" *Type: {this.GetType().Name}");
-            sb.AppendLine($" *Health: {this.HealthPoints}");
-            sb.AppendLine($" *Attack: {this.AttackPoints}");
-            sb.AppendLine($" *Defense: {this.DefensePoints}");
+            sb.AppendLine($" *Health: {this.HealthPoints:f2}");
+            sb.AppendLine($" *Attack: {this.AttackPoints:f2}");
+            sb.AppendLine($" *Defense: {this.DefensePoints:f2}");
             sb.Append($" *Targets: ");
             if(this.Targets.Count == 0)
             {

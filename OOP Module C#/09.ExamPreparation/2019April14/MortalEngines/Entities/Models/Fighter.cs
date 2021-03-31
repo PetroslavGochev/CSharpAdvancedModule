@@ -1,10 +1,11 @@
 ﻿using MortalEngines.Entities.Contracts;
+using System;
 
 namespace MortalEngines.Entities.Models
 {
     public class Fighter : BaseMachine, IFighter
     {
-        public Fighter(string name, double attackPoints, double defensePoints, double healthPoints) 
+        public Fighter(string name, double attackPoints, double defensePoints) 
             : base(name, attackPoints, defensePoints, 200)
         {
             this.AggressiveMode = true;
@@ -18,20 +19,18 @@ namespace MortalEngines.Entities.Models
             {
                 this.AttackPoints += 50;
                 this.DefensePoints -= 25;
-                this.AggressiveMode = false;
             }
             else
             {
                 this.AttackPoints -= 50;
                 this.DefensePoints += 25;
-                this.AggressiveMode = true;
             }
         }
 
         public override string ToString()
         {
             string mode = this.AggressiveMode ? "ON" : "OFF";
-            return base.ToString() + $" *Aggressive: {mode}";
+            return base.ToString() + Environment.NewLine + $" *Aggressive: {mode}";
         }
     }
 }
