@@ -23,7 +23,7 @@ namespace MXGP.Models.Motorcycles.Models
                 this.maximumHorsePower = 100;
             }
         }
-        public Motorcycle(string model, int horsePower, double cubicCentimeters)
+        protected Motorcycle(string model, int horsePower, double cubicCentimeters)
             : this()
         {
             this.Model = model;
