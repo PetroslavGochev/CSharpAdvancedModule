@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SantaWorkshop", "SantaWorkshop.csproj", "{D87BAFFE-A12D-4DCC-828A-1FA5F3530A50}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D87BAFFE-A12D-4DCC-828A-1FA5F3530A50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D87BAFFE-A12D-4DCC-828A-1FA5F3530A50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D87BAFFE-A12D-4DCC-828A-1FA5F3530A50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D87BAFFE-A12D-4DCC-828A-1FA5F3530A50}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {14B0FA07-85B0-4194-ADE8-6F3FFF9C8505}
+	EndGlobalSection
+EndGlobal

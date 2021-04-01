@@ -15,20 +15,25 @@ namespace SantaWorkshop.Models.Workshops.Models
 
             foreach (var instrument in dwarf.Instruments)
             {
-                if (dwarf.Energy == 0)
+                while (!instrument.IsBroken())
                 {
-                    break;
+                    if (dwarf.Energy == 0)
+                    {
+                        break;
+                    }
+                    present.GetCrafted();
+                    dwarf.Work();
+                    instrument.Use();
+                    if (present.IsDone())
+                    {
+                        break;
+                    }
                 }
-                if (instrument.IsBroken())
-                {
-                    continue;
-                }
-                present.GetCrafted();
-                dwarf.Work();
                 if (present.IsDone())
                 {
                     break;
                 }
+               
             }
 
         }
