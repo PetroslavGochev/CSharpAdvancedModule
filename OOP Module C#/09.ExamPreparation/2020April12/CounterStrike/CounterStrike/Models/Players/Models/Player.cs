@@ -1,6 +1,7 @@
 ﻿using CounterStrike.Models.Guns.Contracts;
 using CounterStrike.Models.Players.Contracts;
 using System;
+using System.Text;
 
 namespace CounterStrike.Models.Players.Models
 {
@@ -43,7 +44,7 @@ namespace CounterStrike.Models.Players.Models
             }
             protected set
             {
-                if(value <= 0)
+                if(value < 0)
                 {
                     throw new ArgumentException("Player health cannot be below or equal to 0.");
                 }
@@ -90,12 +91,38 @@ namespace CounterStrike.Models.Players.Models
         {
            if(this.Armor > 0)
             {
-                this.Armor -= points;
+                if(this.Armor < points)
+                {
+                    this.Armor = 0;
+                }
+                else
+                {
+                    this.Armor -= points;
+
+                }
             }
            else
             {
-                this.Health -= points;
+                if(this.Health < points)
+                {
+                    this.Health = 0;
+                }
+                else
+                {
+
+                    this.Health -= points;
+                }
             }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"{this.GetType().Name}: {this.Username}");
+            sb.AppendLine($"--Health: {this.Health}");
+            sb.AppendLine($"--Armor: {this.Armor}");
+            sb.AppendLine($"--Gun: {this.Gun.ToString()}");
+            return sb.ToString().TrimEnd();
         }
     }
 }

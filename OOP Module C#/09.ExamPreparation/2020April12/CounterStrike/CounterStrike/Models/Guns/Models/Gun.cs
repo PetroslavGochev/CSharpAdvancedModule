@@ -37,7 +37,7 @@ namespace CounterStrike.Models.Guns.Models
             }
             protected set
             {
-                if(value <= 0)
+                if(value < 0)
                 {
                     throw new ArgumentException("Bullets cannot be below 0.");
                 }
@@ -46,6 +46,10 @@ namespace CounterStrike.Models.Guns.Models
         }
 
         public abstract int Fire();
-        
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

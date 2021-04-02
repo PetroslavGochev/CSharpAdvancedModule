@@ -3,6 +3,7 @@ using CounterStrike.Models.Players.Contracts;
 using CounterStrike.Models.Players.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace CounterStrike.Models.Maps.Models
 {
@@ -16,26 +17,39 @@ namespace CounterStrike.Models.Maps.Models
             this.terrorist = new List<IPlayer>();
             this.counterTerrorist = new List<IPlayer>();
         }
-        public void Start(ICollection<IPlayer> players)
+        public string Start(ICollection<IPlayer> players)
         {
             SectionPlayers(players);
-            PlayingGame(this.terrorist,this.counterTerrorist);
-            PlayingGame(this.counterTerrorist,this.terrorist);
+            StringBuilder sb = new StringBuilder();
+            while (true)
+            {
+                PlayingGame(this.terrorist, this.counterTerrorist);
+                PlayingGame(this.counterTerrorist, this.terrorist);
+                if (!AnyAlive(this.counterTerrorist))
+                {
+                    sb.Append($"Terrorist wins!");
+                    break;
+                }
+                else if (!AnyAlive(this.terrorist))
+                {
+                    sb.Append($"CounterTerrorist wins!");
+                    break;
+                }
+            }
+            return sb.ToString().TrimEnd();
         }
 
+        private bool AnyAlive(ICollection<IPlayer> team)
+        {
+            return team.Any(x => x.IsAlive);
+        }
         private void PlayingGame(ICollection<IPlayer> attackTeam, ICollection<IPlayer> defendTeam)
         {
             foreach (var player in attackTeam)
             {
-                if (!player.IsAlive)
+                foreach (var defendPlayer in defendTeam)
                 {
-                    continue;
-                }
-                int damage = player.Gun.Fire();
-                IPlayer defend = defendTeam.FirstOrDefault();
-                if (defend != null && defend.IsAlive)
-                {
-                    defend.TakeDamage(damage);
+                    defendPlayer.TakeDamage(player.Gun.Fire());
                 }
             }
         }
@@ -55,4 +69,5 @@ namespace CounterStrike.Models.Maps.Models
             }
         }
     }
-}
+
+    }

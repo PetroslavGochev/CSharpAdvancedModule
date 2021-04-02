@@ -5,6 +5,6 @@
 
     public interface IMap
     {
-        void Start(ICollection<IPlayer> players);
+        string Start(ICollection<IPlayer> players);
     }
 }
