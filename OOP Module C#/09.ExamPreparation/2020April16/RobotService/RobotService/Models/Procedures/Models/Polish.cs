@@ -6,8 +6,9 @@ namespace RobotService.Models.Procedures.Models
     {
         public override void DoService(IRobot robot, int procedureTime)
         {
-            robot.Happiness -= 7;
+
             base.DoService(robot, procedureTime);
+            robot.Happiness -= 7;
         }
     }
 }

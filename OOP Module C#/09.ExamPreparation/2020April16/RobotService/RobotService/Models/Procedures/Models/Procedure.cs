@@ -8,14 +8,12 @@ namespace RobotService.Models.Procedures.Models
 {
     public abstract class Procedure : IProcedure
     {
-        private List<IRobot> robots;
 
         protected Procedure()
         {
-            this.robots = new List<IRobot>();
+            this.Robots = new List<IRobot>();
         }
-        public ICollection<IRobot> Robots
-            => this.robots;
+        public ICollection<IRobot> Robots { get; set; }
         public virtual void DoService(IRobot robot, int procedureTime)
         {
            if(procedureTime > robot.ProcedureTime)

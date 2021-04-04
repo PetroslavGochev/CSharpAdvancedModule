@@ -1,4 +1,5 @@
 ﻿using RobotService.Models.Garages.Contracts;
+using RobotService.Models.Procedures.Contracts;
 using RobotService.Models.Robots.Contracts;
 using System;
 using System.Collections.Generic;
@@ -6,11 +7,11 @@ using System.Linq;
 
 namespace RobotService.Models.Garages.Models
 {
-    public abstract class Garage : IGarage
+    public  class Garage : IGarage
     {
         private Dictionary<string, IRobot> robots;
 
-        protected Garage()
+        public Garage()
         {
             this.robots = new Dictionary<string, IRobot>();
         }
@@ -20,13 +21,14 @@ namespace RobotService.Models.Garages.Models
         public int Capacity => 10;
         public void Manufacture(IRobot robot)
         {
+           
             if(this.robots.Count == this.Capacity)
             {
                 throw new InvalidOperationException("Not enough capacity");
             }
             else if (this.robots.ContainsKey(robot.Name))
             {
-                throw new ArgumentException("Robot {robot name} already exist");
+                throw new ArgumentException($"Robot {robot.Name} already exist");
             }
             else
             {

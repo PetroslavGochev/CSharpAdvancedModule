@@ -7,13 +7,13 @@ namespace RobotService.Models.Procedures.Models
     {
         public override void DoService(IRobot robot, int procedureTime)
         {
+            base.DoService(robot, procedureTime);
             if (robot.IsChipped)
             {
                 throw new ArgumentException($"{robot.Name} is already chipped");
             }
             robot.Happiness -= 5;
             robot.IsChipped = true;
-            base.DoService(robot, procedureTime);
         }
     }
 }
