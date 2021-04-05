@@ -1,4 +1,5 @@
-﻿using OnlineShop.Models.Products.Components;
+﻿using OnlineShop.Common.Constants;
+using OnlineShop.Models.Products.Components;
 using OnlineShop.Models.Products.Peripherals;
 using System;
 using System.Collections.Generic;
@@ -9,35 +10,36 @@ namespace OnlineShop.Models.Products.Computers
 {
     public abstract class Computer : Product, IComputer
     {
-        private List<IComponent> components;
-        private List<IPeripheral> peripherals;
-        private double overallPerformance;
-
+        private readonly ICollection<IComponent> components;
+        private readonly ICollection<IPeripheral> peripherals;
         protected Computer(int id, string manufacturer, string model, decimal price, double overallPerformance) 
             : base(id, manufacturer, model, price, overallPerformance)
         {
             this.components = new List<IComponent>();
             this.peripherals = new List<IPeripheral>();
-            
+
         }
 
-        public IReadOnlyCollection<IComponent> Components 
-            => this.components.AsReadOnly();
+        public IReadOnlyCollection<IComponent> Components
+            => this.components.ToList().AsReadOnly();
 
         public IReadOnlyCollection<IPeripheral> Peripherals
-            => this.peripherals.AsReadOnly();
+            => this.peripherals.ToList().AsReadOnly();
 
-       
+
         public override double OverallPerformance
-             => this.components == null || this.components.Count == 0 ? base.OverallPerformance : this.components.Average(x => x.OverallPerformance) + base.OverallPerformance;
-        public override decimal Price => base.Price + this.components.Sum(x => x.Price) + this.peripherals.Sum(x => x.Price);
+             =>  this.components.Count == 0 ? 
+            base.OverallPerformance
+            : this.components.Average(x => x.OverallPerformance) + base.OverallPerformance;
+
+        public override decimal Price => base.Price + this.Components.Sum(x => x.Price) + this.Peripherals.Sum(x => x.Price);
 
 
         public void AddComponent(IComponent component)
         {
             if(this.components.Any(x=>x.GetType().Name == component.GetType().Name))
             {
-                throw new ArgumentException($"Component {this.components.GetType().Name} already exists in {this.GetType().Name} with Id {this.Id}.");
+                throw new ArgumentException($"Component {component.GetType().Name} already exists in {this.GetType().Name} with Id {this.Id}.");
             }
             this.components.Add(component);
         }
@@ -51,6 +53,7 @@ namespace OnlineShop.Models.Products.Computers
             }
             this.peripherals.Add(peripheral);
         }
+
 
         public IComponent RemoveComponent(string componentType)
         {
@@ -68,7 +71,7 @@ namespace OnlineShop.Models.Products.Computers
             IPeripheral peripheral = this.peripherals.Where(x => x.GetType().Name == peripheralType).FirstOrDefault();
             if (peripheral == null)
             {
-                throw new ArgumentException($"Component {peripheralType} does not exist in {this.GetType().Name} with Id {this.Id}.");
+                throw new ArgumentException($"Peripheral {peripheralType} does not exist in {this.GetType().Name} with Id {this.Id}.");
             }
             this.peripherals.Remove(peripheral);
             return peripheral;
@@ -84,7 +87,7 @@ namespace OnlineShop.Models.Products.Computers
                 sb.AppendLine($"  {component}");
             }
             double sum = this.peripherals.Count == 0 ? 0 : this.peripherals.Average(x => x.OverallPerformance);
-            sb.AppendLine($" Peripherals ({this.peripherals.Count}); Average Overall Performance ({sum:f2}):");
+            sb.AppendLine($" Peripherals ({this.peripherals.Count}); Average Overall Performance ({sum}):");
             foreach (var peripheral in this.peripherals)
             {
                 sb.AppendLine($"  {peripheral}");

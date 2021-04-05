@@ -10,7 +10,7 @@ namespace OnlineShop.Models.Products
         private int id;
         private double overallPerformance;
 
-        protected  Product(int id, string manufacturer, string model, decimal price, double overallPerformance)
+        protected Product(int id, string manufacturer, string model, decimal price, double overallPerformance)
         {
             this.Id = id;
             this.Manufacturer = manufacturer;
@@ -26,7 +26,7 @@ namespace OnlineShop.Models.Products
             }
             private set
             {
-                if(value <= 0)
+                if (value <= 0)
                 {
                     throw new ArgumentException("Id can not be less or equal than 0.");
                 }
@@ -72,7 +72,7 @@ namespace OnlineShop.Models.Products
             {
                 return this.price;
             }
-            protected set
+            private set
             {
                 if (value <= 0)
                 {
@@ -88,7 +88,7 @@ namespace OnlineShop.Models.Products
             {
                 return this.overallPerformance;
             }
-            protected set
+            private set
             {
                 if (value <= 0)
                 {
@@ -100,8 +100,9 @@ namespace OnlineShop.Models.Products
 
         public override string ToString()
         {
-            return $"Overall Performance: {this.OverallPerformance:f2}. Price: {this.Price:f2} - {this.GetType().Name}: " +
+            return $"Overall Performance: {this.OverallPerformance}. Price: {this.Price} - {this.GetType().Name}: " +
                 $"{this.Manufacturer} {this.Model} (Id: {this.Id})";
         }
     }
 }
+

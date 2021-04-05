@@ -1,4 +1,6 @@
-﻿namespace OnlineShop.Models.Products.Components
+﻿using OnlineShop.Common.Constants;
+
+namespace OnlineShop.Models.Products.Components
 {
     public abstract class Component : Product, IComponent
     {
@@ -8,12 +10,13 @@
             this.Generation = generation;
         }
 
-        public int Generation { get; private set; }
+        public int Generation { get; }
 
 
         public override string ToString()
         {
-            return base.ToString() + $" Generation: {this.Generation}";
+            return base.ToString() + string.Format(SuccessMessages.ComponentToString, this.Generation);
         }
     }
 }
+
