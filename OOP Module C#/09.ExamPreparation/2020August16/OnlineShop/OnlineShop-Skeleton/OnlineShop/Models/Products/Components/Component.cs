@@ -6,12 +6,10 @@
             : base(id, manufacturer, model, price, overallPerformance)
         {
             this.Generation = generation;
-            overallPerformance *= this.Multiplier;
         }
 
         public int Generation { get; private set; }
 
-        protected abstract double Multiplier { get; }
 
         public override string ToString()
         {

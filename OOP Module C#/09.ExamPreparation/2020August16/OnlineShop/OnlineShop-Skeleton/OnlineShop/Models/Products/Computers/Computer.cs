@@ -12,7 +12,6 @@ namespace OnlineShop.Models.Products.Computers
         private List<IComponent> components;
         private List<IPeripheral> peripherals;
         private double overallPerformance;
-        private decimal price;
 
         protected Computer(int id, string manufacturer, string model, decimal price, double overallPerformance) 
             : base(id, manufacturer, model, price, overallPerformance)
@@ -28,35 +27,11 @@ namespace OnlineShop.Models.Products.Computers
         public IReadOnlyCollection<IPeripheral> Peripherals
             => this.peripherals.AsReadOnly();
 
+       
         public override double OverallPerformance
-        {
-            get
-            {
-                return this.overallPerformance;
-            }
-            protected set
-            {
-               if(this.components.Count == 0)
-                {
-                    this.overallPerformance = value;
-                }
-               else
-                {
-                    this.overallPerformance = this.components.Sum(x => x.OverallPerformance);
-                }
-            }
-        }
-        public override decimal Price
-        {
-            get
-            {
-                return this.price;
-            }
-            protected set
-            {
-                this.price = value + this.components.Sum(x => x.Price) + this.peripherals.Sum(x => x.Price);
-            }
-        }
+             => this.components == null || this.components.Count == 0 ? base.OverallPerformance : this.components.Average(x => x.OverallPerformance) + base.OverallPerformance;
+        public override decimal Price => base.Price + this.components.Sum(x => x.Price) + this.peripherals.Sum(x => x.Price);
+
 
         public void AddComponent(IComponent component)
         {
@@ -108,7 +83,8 @@ namespace OnlineShop.Models.Products.Computers
             {
                 sb.AppendLine($"  {component}");
             }
-            sb.AppendLine($" Peripherals ({this.peripherals.Count}); Average Overall Performance ({this.peripherals.Average(x=>x.OverallPerformance)}):");
+            double sum = this.peripherals.Count == 0 ? 0 : this.peripherals.Average(x => x.OverallPerformance);
+            sb.AppendLine($" Peripherals ({this.peripherals.Count}); Average Overall Performance ({sum:f2}):");
             foreach (var peripheral in this.peripherals)
             {
                 sb.AppendLine($"  {peripheral}");

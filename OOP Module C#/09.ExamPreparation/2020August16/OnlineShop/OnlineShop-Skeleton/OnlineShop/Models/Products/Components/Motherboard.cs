@@ -3,10 +3,9 @@
     public class Motherboard : Component
     {
         public Motherboard(int id, string manufacturer, string model, decimal price, double overallPerformance, int generation) 
-            : base(id, manufacturer, model, price, overallPerformance, generation)
+            : base(id, manufacturer, model, price, overallPerformance * 1.25, generation)
         {
         }
 
-        protected override double Multiplier => 1.25;
     }
 }
