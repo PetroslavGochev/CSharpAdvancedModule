@@ -34,7 +34,7 @@ namespace EasterRaces.Models.Cars.Entities
             }
         }
 
-        public virtual int HorsePower
+        public  int HorsePower
         {
             get
             {

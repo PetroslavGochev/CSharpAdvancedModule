@@ -14,6 +14,7 @@ using System.Text;
 
 namespace EasterRaces.Core.Entities
 {
+
     public class ChampionshipController : IChampionshipController
     {
         private IRepository<IRace> races;
@@ -36,7 +37,7 @@ namespace EasterRaces.Core.Entities
             {
                 throw new InvalidOperationException($"Driver {driverName} could not be found.");
             }
-            else if(car == null)
+            else if (car == null)
             {
                 throw new InvalidOperationException($"Car {carModel} could not be found.");
             }
@@ -52,11 +53,11 @@ namespace EasterRaces.Core.Entities
             IRace race = this.races.GetByName(raceName);
             IDriver driver = this.drivers.GetByName(driverName);
 
-            if(race == null)
+            if (race == null)
             {
                 throw new InvalidOperationException($"Race {raceName} could not be found.");
             }
-            else if(driver == null)
+            else if (driver == null)
             {
                 throw new InvalidOperationException($"Driver { driverName } could not be found.");
             }
@@ -70,12 +71,12 @@ namespace EasterRaces.Core.Entities
 
         public string CreateCar(string type, string model, int horsePower)
         {
-            if(this.cars.GetByName(model) != null)
+            if (this.cars.GetByName(model) != null)
             {
                 throw new ArgumentException($"Car {model} is already created.");
             }
             ICar car = null;
-            if(type == "Muscle")
+            if (type == "Muscle")
             {
                 car = new MuscleCar(model, horsePower);
             }
@@ -101,7 +102,7 @@ namespace EasterRaces.Core.Entities
 
         public string CreateRace(string name, int laps)
         {
-            if(this.races.GetByName(name) != null)
+            if (this.races.GetByName(name) != null)
             {
                 throw new InvalidOperationException($"Race {name} is already create.");
             }
@@ -115,37 +116,24 @@ namespace EasterRaces.Core.Entities
         {
             IRace race = this.races.GetByName(raceName);
 
-            if(race == null)
+            if (race == null)
             {
                 throw new InvalidOperationException($"Race {raceName} could not be found.");
             }
-            else if(race.Drivers.Count < 3)
+            else if (race.Drivers.Count < 3)
             {
                 throw new InvalidOperationException($"Race {race.Name} cannot start with less than 3 participants.");
             }
             StringBuilder sb = new StringBuilder();
-                    IDriver[] winners = race.Drivers
-                                                .OrderByDescending(x => x.Car.CalculateRacePoints(race.Laps))
-                                                .Take(3)
-                                                .ToArray();
-
-            for (int i = 1; i <= 3; i++)
-            {
-                if(i == 1)
-                {
-                    sb.AppendLine($"Driver {winners[i - 1].Name} wins {race.Name} race.");
-                    winners[i - 1].WinRace();
-                }
-                else if(i == 2)
-                {
-                    sb.AppendLine($"Driver {winners[i - 1].Name} is second in {race.Name} race.");
-                }
-                else
-                {
-                    sb.Append($"Driver {winners[i - 1].Name} is third in {race.Name} race.");
-                }
-            }
-
+            IDriver[] winners = race.Drivers
+                                        .OrderByDescending(x => x.Car.CalculateRacePoints(race.Laps))
+                                        .Take(3)
+                                        .ToArray();
+            sb.AppendLine($"Driver {winners[0].Name} wins {race.Name} race.");
+            winners[0].WinRace();
+            sb.AppendLine($"Driver {winners[1].Name} is second in {race.Name} race.");
+            sb.Append($"Driver {winners[2].Name} is third in {race.Name} race.");
+            this.races.Remove(race);
             return sb.ToString().TrimEnd();
         }
     }
