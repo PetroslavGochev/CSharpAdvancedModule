@@ -24,8 +24,7 @@ namespace ViceCity.Models.Neghbourhoods.Models
                     player.TakeLifePoints(shoots);
                     if (!player.IsAlive)
                     {
-                        civilPlayers.Remove(player);
-                        
+                        civilPlayers.Remove(player);                       
                     }
                 }
             }

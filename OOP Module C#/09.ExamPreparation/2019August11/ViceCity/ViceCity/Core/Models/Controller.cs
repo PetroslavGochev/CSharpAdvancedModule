@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ViceCity.Core.Contracts;
@@ -109,5 +110,7 @@ namespace ViceCity.Core.Models
         }
         private int CivilPlayerTotalHealth()
             => this.civilPlayer.Sum(c => c.LifePoints);
+
+     
     }
 }

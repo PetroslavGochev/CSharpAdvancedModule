@@ -41,7 +41,7 @@ namespace ViceCity.Models.Guns.Models
             {
                 if(value < 0)
                 {
-                    ;
+      
                     throw new ArgumentException("Bullets cannot be below zero!");
                 }
                 this.bulletsPerBarrel = value;

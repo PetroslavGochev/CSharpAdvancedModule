@@ -45,6 +45,7 @@ namespace ViceCity.Core.Models
                     else if (command == "Fight")
                     {
                         message = this.controller.Fight();
+                        
                     }
 
                 }
