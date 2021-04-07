@@ -1,4 +1,6 @@
-﻿using WarCroft.Entities.Characters.Contracts;
+﻿using System;
+using WarCroft.Constants;
+using WarCroft.Entities.Characters.Contracts;
 using WarCroft.Entities.Inventory.Models;
 
 namespace WarCroft.Entities.Characters
@@ -16,11 +18,13 @@ namespace WarCroft.Entities.Characters
 
         public void Heal(Character character)
         {
-            character.TakeDamage(0);
-            if (this.IsAlive && character.IsAlive)
+            this.EnsureAlive();
+            if (!character.IsAlive)
             {
-                character.Health += this.AbilityPoints;
+                throw new InvalidOperationException(ExceptionMessages.AffectedCharacterDead);
             }
+            character.Health += this.AbilityPoints;
+
         }
     }
 

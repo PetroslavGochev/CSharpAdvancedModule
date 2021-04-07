@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WarCroft.Constants;
 using WarCroft.Entities.Items;
 
 namespace WarCroft.Entities.Inventory.Models
 {
     public abstract class Bag : IBag
     {
-        private const int CAPACITY = 100;
         private List<Item> items;
 
         protected Bag(int capacity)
@@ -16,7 +16,7 @@ namespace WarCroft.Entities.Inventory.Models
             this.items = new List<Item>();
         }
 
-        public int Capacity { get; set; }
+        public int Capacity { get; set; } = 100;
 
         public int Load 
             => this.Items.Sum(x => x.Weight);
@@ -28,7 +28,7 @@ namespace WarCroft.Entities.Inventory.Models
         {
             if(this.Load + item.Weight > this.Capacity)
             {
-                throw new InvalidOperationException("Bag is full!");
+                throw new InvalidOperationException(ExceptionMessages.ExceedMaximumBagCapacity);
             }
             this.items.Add(item);
         }
@@ -37,11 +37,11 @@ namespace WarCroft.Entities.Inventory.Models
         {
             if (!this.Items.Any())
             {
-                throw new InvalidOperationException("Bag is empty!");
+                throw new InvalidOperationException(ExceptionMessages.EmptyBag);
             }
             else if(!this.Items.Any(x=>x.GetType().Name == name))
             {
-                throw new ArgumentException($"No item with name {name} in bag!");
+                throw new ArgumentException(string.Format(ExceptionMessages.ItemNotFoundInBag),name);
             }
             Item item = this.Items.FirstOrDefault(x => x.GetType().Name == name);
             this.items.Remove(item);

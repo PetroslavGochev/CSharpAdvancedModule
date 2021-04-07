@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WarCroft.Constants;
 using WarCroft.Entities.Characters;
 using WarCroft.Entities.Characters.Contracts;
 using WarCroft.Entities.Items;
@@ -26,7 +27,7 @@ namespace WarCroft.Core
 
 			if (characterType != "Priest" && characterType != "Warrior")
 			{
-				throw new ArgumentException($"Invalid character type \"{ characterType }\"!");
+				throw new ArgumentException(string.Format(ExceptionMessages.InvalidCharacterType), characterType);
 			}
 			Character character = null;
 			 if(characterType == "Priest")
@@ -38,7 +39,7 @@ namespace WarCroft.Core
 				character = new Warrior(name);
             }
 			this.party.Add(character);
-			return $"{character.Name} joined the party!";
+			return String.Format(String.Format(SuccessMessages.JoinParty, character.Name));
 		}
 
 		public string AddItemToPool(string[] args)
@@ -46,7 +47,7 @@ namespace WarCroft.Core
 			string itemName = args[0];
 			if(itemName != "FirePotion" && itemName != "HealthPotion")
             {
-				throw new ArgumentException($"Invalid item \"{ itemName }\"!");
+				throw new ArgumentException(string.Format(ExceptionMessages.InvalidItem), itemName);
 			}
 			Item item = null;
 			if(itemName == "FirePotion")
@@ -58,7 +59,7 @@ namespace WarCroft.Core
 				item = new HealthPotion();
             }
 			this.itemPool.Add(item);
-			return $"{itemName} added to pool.";
+			return String.Format(String.Format(SuccessMessages.AddItemToPool, itemName));
 		}
 
 		public string PickUpItem(string[] args)
@@ -66,18 +67,18 @@ namespace WarCroft.Core
 			string characterName = args[0];
 			if(!this.party.Any(x=>x.Name == characterName))
             {
-				throw new ArgumentException($"Character {characterName} not found!");
+				throw new ArgumentException(string.Format(ExceptionMessages.CharacterNotInParty), characterName);
 			}
 			else if (!this.itemPool.Any())
             {
-				throw new InvalidOperationException("No items left in pool!");
+				throw new InvalidOperationException(ExceptionMessages.ItemPoolEmpty);
             }
 
 			Character character = this.party.FirstOrDefault(x => x.Name == characterName);
 			Item item = this.itemPool.Last();
 			this.itemPool.Remove(item);
 			character.Bag.AddItem(item);
-			return $"{character.Name} picked up {item.GetType().Name}!";
+			return String.Format(String.Format(SuccessMessages.PickUpItem, character.Name, item.GetType().Name));
 		}
 
 		public string UseItem(string[] args)
@@ -87,89 +88,96 @@ namespace WarCroft.Core
 
 			if(!this.party.Any(x=>x.Name == characterName))
             {
-				throw new ArgumentException($"Character {characterName} not found!");
+				throw new ArgumentException(string.Format(ExceptionMessages.CharacterNotInParty), characterName);
             }
 
 			Character character = this.party.FirstOrDefault(x => x.Name == characterName);
 			Item item = character.Bag.GetItem(itemName);
 			character.UseItem(item);
-			return $"{character.Name} used {item.GetType().Name}.";
+			return String.Format(String.Format(SuccessMessages.UsedItem, character.Name, item.GetType().Name));
 
 		}
 
-		public string GetStats()
-		{
-			StringBuilder sb = new StringBuilder();
-            foreach (var character in this.party.OrderByDescending(x=>x.IsAlive).ThenByDescending(x=>x.Health))
+        public string GetStats()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var character in this.party.OrderByDescending(x => x.IsAlive).ThenByDescending(x => x.Health))
             {
-				string status = character.IsAlive ? "Alive" : "Dead";
-				sb.AppendLine($"{character.Name} - HP: {character.Health}/{character.BaseHealth}, AP: {character.Armor}/{character.BaseArmor}, " +
-					$"Status: {status}");
+                string status = character.IsAlive ? "Alive" : "Dead";
+                sb.AppendLine(String.Format(SuccessMessages.CharacterStats,
+                   character.Name, character.Health,
+                   character.BaseHealth, character.Armor,
+                   character.BaseArmor, status));
             }
-			return sb.ToString().TrimEnd();
-		}
+            return sb.ToString().TrimEnd();
+        }
 
-		public string Attack(string[] args)
-		{
-			string attackerName = args[0];
-			string receiverName = args[1];
+        public string Attack(string[] args)
+        {
+            string attackerName = args[0];
+            string receiverName = args[1];
 
-			if(!this.party.Any(x=>x.Name == attackerName))
+            if (!this.party.Any(x => x.Name == attackerName))
             {
-				throw new ArgumentException($"Character {attackerName} not found!");
-            }
-			else if (!this.party.Any(x => x.Name == receiverName))
-			{
-				throw new ArgumentException($"Character {receiverName} not found!");
-			}
+                throw new ArgumentException(string.Format(ExceptionMessages.CharacterNotInParty), attackerName);
 
-			Warrior attacker = (Warrior)this.party.FirstOrDefault(x => x.Name == attackerName);
-			Character receiver = this.party.FirstOrDefault(x => x.Name == receiverName);
+            }
+            else if (!this.party.Any(x => x.Name == receiverName))
+            {
+                throw new ArgumentException(string.Format(ExceptionMessages.CharacterNotInParty), receiverName);
+            }
+
+            Warrior attacker = (Warrior)this.party.FirstOrDefault(x => x.Name == attackerName);
+            Character receiver = this.party.FirstOrDefault(x => x.Name == receiverName);
 
             if (!attacker.IsAlive)
             {
-				throw new ArgumentException($"{attacker.Name} cannot attack!");
+                throw new ArgumentException($"{attacker.Name} cannot attack!");
             }
 
-			attacker.Attack(receiver);
+            attacker.Attack(receiver);
 
-			StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
 
-			sb.Append($"{attacker.Name} attacks {receiver.Name} for {attacker.AbilityPoints} hit points!");
-			sb.Append($"{receiver.Name} has {receiver.Health}/{receiver.BaseHealth} HP and ");
-			sb.AppendLine($"{receiver.Armor}/{receiver.BaseArmor} AP left!");
+            sb.AppendLine($"{attackerName} attacks {receiverName} for {attacker.AbilityPoints} hit points! {receiverName} has " +
+                $"{receiver.Health}/{receiver.BaseHealth} HP and {receiver.Armor}/{receiver.BaseArmor} AP left!");
             if (!receiver.IsAlive)
             {
-				sb.Append($"{receiver.Name} is dead!");
-			}
-			return sb.ToString().TrimEnd();
-		}
-
-		public string Heal(string[] args)
-		{
-			string healerName = args[0];
-			string healingReceiverName = args[1];
-
-			if(!this.party.Any(x=>x.Name == healerName))
-            {
-				throw new ArgumentException($"Character {healerName} not found!");
+                sb.Append($"{receiver.Name} is dead!");
             }
-			else if (!this.party.Any(x => x.Name == healingReceiverName))
-			{
-				throw new ArgumentException($"Character {healingReceiverName} not found!");
-			}
+            return sb.ToString().TrimEnd();
+        }
 
-			Priest healer = (Priest)this.party.FirstOrDefault(x => x.Name == healerName);
-			Character receiver = this.party.FirstOrDefault(x => x.Name == healingReceiverName);
 
-            if (!healer.IsAlive)
+        public string Heal(string[] args)
+        {
+            string healerName = args[0];
+            string healingReceiverName = args[1];
+
+            if (!this.party.Any(x => x.Name == healerName))
             {
-				throw new ArgumentException($"{healer.Name} cannot heal!");
+                throw new ArgumentException(string.Format(ExceptionMessages.CharacterNotInParty), healerName);
             }
+            else if (!this.party.Any(x => x.Name == healingReceiverName))
+            {
+                throw new ArgumentException(string.Format(ExceptionMessages.CharacterNotInParty), healingReceiverName);
+            }
+            if (this.party.FirstOrDefault(x=>x.Name == healerName).GetType().Name != "Priest")
+            {
+                throw new ArgumentException(String.Format(ExceptionMessages.HealerCannotHeal, healerName));
+            }
+            Priest healer = (Priest)this.party.FirstOrDefault(x => x.Name == healerName);
+            Character receiver = this.party.FirstOrDefault(x => x.Name == healingReceiverName);
 
-			healer.Heal(receiver);
-
-			return $"{healer.Name} heals {receiver.Name} for {healer.AbilityPoints}! {receiver.Name} has {receiver.Health} health now!";
-		}
+            
+            StringBuilder sb = new StringBuilder();
+            healer.Heal(receiver);
+            sb.AppendLine(String.Format(SuccessMessages.HealCharacter,
+              healer.Name, receiver.Name, healer.AbilityPoints,
+              receiver.Name, receiver.Health));
+            return sb.ToString().TrimEnd();
+        }
+        
 	}
 }
+
