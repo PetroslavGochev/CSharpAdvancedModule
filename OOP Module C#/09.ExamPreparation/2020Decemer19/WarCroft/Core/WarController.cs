@@ -169,7 +169,6 @@ namespace WarCroft.Core
             Priest healer = (Priest)this.party.FirstOrDefault(x => x.Name == healerName);
             Character receiver = this.party.FirstOrDefault(x => x.Name == healingReceiverName);
 
-            
             StringBuilder sb = new StringBuilder();
             healer.Heal(receiver);
             sb.AppendLine(String.Format(SuccessMessages.HealCharacter,
