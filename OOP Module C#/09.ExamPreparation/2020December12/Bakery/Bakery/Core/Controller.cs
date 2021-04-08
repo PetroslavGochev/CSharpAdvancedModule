@@ -136,7 +136,10 @@ namespace Bakery.Core
         public string ReserveTable(int numberOfPeople)
         {
             ITable table = this.tables.FirstOrDefault(x => !x.IsReserved && x.Capacity >= numberOfPeople);
-            table.Reserve(numberOfPeople);
+            if(table != null)
+            {
+                table.Reserve(numberOfPeople);
+            }
             return table == null ? $"No available table for {numberOfPeople} people" : $"Table {table.TableNumber} has been reserved for {numberOfPeople} people";
         }
     }

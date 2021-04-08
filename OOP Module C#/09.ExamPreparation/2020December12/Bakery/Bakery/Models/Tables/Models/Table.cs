@@ -101,8 +101,8 @@ namespace Bakery.Models.Tables.Models
         {
             if (!this.IsReserved)
             {
-                this.IsReserved = true;
                 this.NumberOfPeople = numberOfPeople;
+                this.IsReserved = true;              
             }
         }
     }
