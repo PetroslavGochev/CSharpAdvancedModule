@@ -74,31 +74,7 @@ namespace RobotService.Core.Models
 
         public string History(string procedureType)
         {
-            if(procedureType == "Charge")
-            {
-                this.procedure = GetProcedureFromCollection(procedureType);
-            }
-            else if(procedureType == "Chip")
-            {
-                this.procedure = GetProcedureFromCollection(procedureType);
-            }
-            else if (procedureType == "Polish")
-            {
-                this.procedure = GetProcedureFromCollection(procedureType);
-            }
-            else if (procedureType == "Rest")
-            {
-                 this.procedure = GetProcedureFromCollection(procedureType);
-            }
-            else if (procedureType == "TechCheck")
-            {
-                this.procedure = GetProcedureFromCollection(procedureType);
-            }
-            else if (procedureType == "Work")
-            {
-                this.procedure = GetProcedureFromCollection(procedureType);
-
-            }
+            this.procedure = this.procedureList.FirstOrDefault(x => x.GetType().Name == procedureType);
             return this.procedure.History();
 
         }
