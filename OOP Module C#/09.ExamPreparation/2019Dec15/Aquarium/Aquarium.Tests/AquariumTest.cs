@@ -11,62 +11,103 @@ namespace Aquariums.Tests
         [SetUp]
         public void Setup()
         {
-            this.fish = new Fish("Test");
+            this.fish = new Fish("Petroslav");
             this.aquarium = new Aquarium("Aquarium", 1);
         }
 
         [Test]
-        public void TestFishProperty()
+        public void FishCtor()
         {
-            Assert.AreEqual("Test", this.fish.Name);
-            Assert.AreEqual(true, this.fish.Available);
+            Assert.IsNotNull(this.fish);
         }
         [Test]
-        public void TestAquariumProperty()
+        public void AquariumCtor()
         {
-            Assert.AreEqual("Aquarium", this.aquarium.Name);
-            Assert.AreEqual(1, this.aquarium.Capacity);
-            Assert.AreEqual(0, this.aquarium.Count);
-        }
-        [Test]
-        public void TestPropertyIfDataIsInvalid()
-        {
-            Aquarium aquarium;
-            Assert.Throws<ArgumentNullException>(() => aquarium = new Aquarium(null, 1));
-            Assert.Throws<ArgumentNullException>(() => aquarium = new Aquarium(string.Empty, 1));
-            Assert.Throws<ArgumentException>(() => aquarium = new Aquarium("Test", -1));
+            Assert.IsNotNull(this.aquarium);
         }
 
         [Test]
-        public void TestAddMethod()
+        public void PropertyOfAquarium()
+        {
+            Assert.AreEqual("Aquarium",this.aquarium.Name);
+        }
+        [Test]
+        public void PropertyOfAquariumCapacity()
+        {
+            Assert.AreEqual(1, this.aquarium.Capacity);
+        }
+
+          [Test]
+        public void ZeroCapacity()
+        {
+            Assert.Throws<ArgumentException>(() => new Aquarium("Petroslav", -1));
+        }
+        [Test]
+        public void InvalidName()
+        {
+            string name = null;
+            Assert.Throws<ArgumentNullException>(() => new Aquarium(name, 2));
+        }
+
+        [Test]
+        public void PropertyCount()
+        {
+            Assert.AreEqual(0, this.aquarium.Count);
+        }
+
+        [Test]
+        public void AddFishMethodInvalid()
         {
             this.aquarium.Add(this.fish);
             Assert.Throws<InvalidOperationException>(() => this.aquarium.Add(this.fish));
         }
 
         [Test]
-        public void TestRemoveFishMethod()
+        public void AddFishMethod()
         {
             this.aquarium.Add(this.fish);
-            this.aquarium.RemoveFish("Test");
-            Assert.Throws<InvalidOperationException>(() => this.aquarium.RemoveFish("Test"));
+            Assert.AreEqual(1, this.aquarium.Count);
         }
 
         [Test]
-        public void TestSellFishMethod()
+        public void RemoveInvalidFish()
+        {
+           
+            Assert.Throws<InvalidOperationException>(() => this.aquarium.RemoveFish("Invalid"));
+        }
+
+        [Test]
+        public void RemoveFish()
         {
             this.aquarium.Add(this.fish);
-            bool expectedResult = false;
-            Fish fish = this.aquarium.SellFish("Test");
-            Assert.AreEqual(expectedResult, fish.Available);
-            Assert.Throws<InvalidOperationException>(() => this.aquarium.SellFish("Test1"));
+            this.aquarium.RemoveFish("Petroslav");
+            Assert.AreEqual(0, this.aquarium.Count);
+
         }
+
         [Test]
-        public void TestReport()
+        public void SellInvalidFish()
         {
-            string expectedResult = $"Fish available at Aquarium: Test";
+
+            Assert.Throws<InvalidOperationException>(() => this.aquarium.SellFish("Invalid"));
+        }
+
+        [Test]
+        public void SellFish()
+        {
+            this.aquarium.Add(this.fish);
+           Fish f = this.aquarium.SellFish("Petroslav");
+            Assert.AreEqual(false, f.Available); ;
+
+        }
+
+        [Test]
+        public void ReportMethod()
+        {
+            string expectedResult = $"Fish available at Aquarium: Petroslav";
             this.aquarium.Add(this.fish);
             Assert.AreEqual(expectedResult, this.aquarium.Report());
+
         }
     }
 }

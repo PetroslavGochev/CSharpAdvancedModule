@@ -7,6 +7,7 @@ using EasterRaces.Models.Races.Contracts;
 using EasterRaces.Models.Races.Entities;
 using EasterRaces.Repositories.Contracts;
 using EasterRaces.Repositories.Entities;
+using EasterRaces.Utilities.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,7 @@ using System.Text;
 
 namespace EasterRaces.Core.Entities
 {
-
-    public class ChampionshipController : IChampionshipController
+   public class ChampionshipController : IChampionshipController
     {
         private IRepository<IRace> races;
         private IRepository<IDriver> drivers;
